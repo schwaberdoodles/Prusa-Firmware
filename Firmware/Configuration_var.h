@@ -149,8 +149,8 @@
 //#define MENU_SERIAL_DUMP        // Enable "Memory dump" in Settings menu
 
 // Filament sensor
-//#define FILAMENT_SENSOR
-//#define PAT9125
+//#define FILAMENT_SENSOR        // AKS: no filament sensor
+//#define PAT9125                // AKS: no filament sensor
 
 // Backlash - 
 //#define BACKLASH_X

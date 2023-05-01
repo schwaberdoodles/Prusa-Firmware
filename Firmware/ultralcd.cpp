@@ -6620,6 +6620,15 @@ bool lcd_selftest()
 	{
 		_progress = lcd_selftest_screen(TestScreen::HotendOk, _progress, 3, true, 2000); //nozzle ok
 	}
+#ifndef FILAMENT_SENSOR
+    // Skip Filament Sensor Test Logic
+    lcd_beeper_quick_feedback();
+    lcd_selftest_screen(TestScreen::Fsensor, _progress, 3, true, 2000);
+    lcd_setstatuspgm(_i("Skipping Fsensor Check..."));
+    _progress = lcd_selftest_screen(TestScreen::FsensorOk, _progress, 3, true, 2000);
+    _result = true;
+#endif
+
 #ifdef FILAMENT_SENSOR
     if (_result)
     {
@@ -6645,7 +6654,7 @@ bool lcd_selftest()
 #if 0
 	// Intentionally disabled - that's why we moved the detection to runtime by just checking the two voltages.
 	// The idea is not to force the user to remove and insert the filament on an assembled printer.
-//def IR_SENSOR_ANALOG
+//ifdef IR_SENSOR_ANALOG 
 			_progress = lcd_selftest_screen(TestScreen::Fsensor, _progress, 3, true, 2000); //check filament sensor
 			_result = lcd_selftest_IRsensor();
 			if (_result)
